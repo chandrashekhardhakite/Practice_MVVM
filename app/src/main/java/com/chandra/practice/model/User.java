@@ -1,8 +1,13 @@
 package com.chandra.practice.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
+@Entity(tableName = "User")
 public class User {
 
 
@@ -11,6 +16,7 @@ public class User {
     private String login;
     @SerializedName("id")
     @Expose
+    @PrimaryKey(autoGenerate = false)
     private Integer id;
     @SerializedName("avatar_url")
     @Expose

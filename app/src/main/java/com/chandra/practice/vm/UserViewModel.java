@@ -17,7 +17,7 @@ public class UserViewModel extends AndroidViewModel {
 
     public UserViewModel(@NonNull Application application) {
         super(application);
-        userRepository = new UserRepository();
+        userRepository = new UserRepository(application);
     }
 
 

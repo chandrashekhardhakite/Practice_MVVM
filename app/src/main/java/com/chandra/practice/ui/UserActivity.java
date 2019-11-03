@@ -47,18 +47,16 @@ public class UserActivity extends AppCompatActivity {
         userViewModel.getuserlist().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
-                Log.d(TAG, "onChanged: "+users.get(0).getLogin());
+
+                Log.d(TAG, "onChanged: "+users.size());
                 userRecyclerAdpater.setUserList(users);
                 userRecyclerAdpater.notifyDataSetChanged();
             }
         });
+
+
     }
 
-//    private void setHardCodeList() {
-//        User user =new User("Chandra",1,"URL", "User");
-//        userList.add(user);
-//
-//    }
 
     private void intiRecyclerView() {
         userRecyclerAdpater = new UserRecyclerAdpater(userList);
