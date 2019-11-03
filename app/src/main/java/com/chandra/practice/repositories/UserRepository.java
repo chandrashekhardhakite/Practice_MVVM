@@ -10,6 +10,7 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.chandra.practice.UserApplication;
 import com.chandra.practice.db.InsertAsync;
 import com.chandra.practice.db.UserDao;
 import com.chandra.practice.db.UserDataBase;
@@ -35,14 +36,15 @@ public class UserRepository {
     private boolean downloaded = false;
 
 
-    public UserRepository(Application application) {
+    public UserRepository(UserApplication application) {
         this.appContext = application.getApplicationContext();
-        userDao = UserDataBase.getUserDataBase(application).userDao();
-        userApiClient = UserApiClient.getuserApiClient();
+        userDao = application.getUserDao();
+        userApiClient= application.getUserApiClient();
         initMediators();
     }
 
     private void initMediators() {
+
         LiveData<List<User>> recipeListApiSource = userApiClient.getUserList();
         mUsers.addSource(recipeListApiSource, new Observer<List<User>>() {
             @Override
@@ -60,6 +62,7 @@ public class UserRepository {
     }
 
     public void inserData(List<User> users) {
+        Log.d(TAG, "inserData: is called");
         new InsertAsync(userDao).execute(users);
     }
 

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.chandra.practice.UserApplication;
 import com.chandra.practice.model.User;
 import com.chandra.practice.repositories.UserRepository;
 
@@ -17,7 +18,8 @@ public class UserViewModel extends AndroidViewModel {
 
     public UserViewModel(@NonNull Application application) {
         super(application);
-        userRepository = new UserRepository(application);
+        UserApplication app = (UserApplication) application;
+        userRepository = new UserRepository(app);
     }
 
 
